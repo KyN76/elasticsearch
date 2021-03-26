@@ -134,7 +134,7 @@ public class FsDirectoryFactory implements IndexStorePlugin.DirectoryFactory {
         }
 
         @Override
-        public void close() throws IOException {
+        public synchronized void close() throws IOException {
             IOUtils.close(super::close, delegate);
         }
 

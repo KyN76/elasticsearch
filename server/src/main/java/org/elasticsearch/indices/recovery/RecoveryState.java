@@ -442,7 +442,7 @@ public class RecoveryState implements ToXContentFragment, Writeable {
             out.writeVLong(checkIndexTime);
         }
 
-        public void reset() {
+        public synchronized void reset() {
             super.reset();
             checkIndexTime = 0;
         }
