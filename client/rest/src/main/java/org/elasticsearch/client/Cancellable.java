@@ -35,11 +35,11 @@ public class Cancellable {
 
     static final Cancellable NO_OP = new Cancellable(null) {
         @Override
-        public void cancel() {
+        public synchronized void cancel() {
         }
 
         @Override
-        void runIfNotCancelled(Runnable runnable) {
+        void synchronized runIfNotCancelled(Runnable runnable) {
             throw new UnsupportedOperationException();
         }
     };

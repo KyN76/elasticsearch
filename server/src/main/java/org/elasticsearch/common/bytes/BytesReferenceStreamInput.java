@@ -143,7 +143,7 @@ class BytesReferenceStreamInput extends StreamInput {
     }
 
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         if (sliceStartOffset <= mark) {
             sliceIndex = mark - sliceStartOffset;
         } else {
@@ -162,7 +162,7 @@ class BytesReferenceStreamInput extends StreamInput {
     }
 
     @Override
-    public void mark(int readLimit) {
+    public synchronized void mark(int readLimit) {
         // We ignore readLimit since the data is all in-memory and therefore we can reset the mark no matter how far we advance.
         this.mark = offset();
     }
