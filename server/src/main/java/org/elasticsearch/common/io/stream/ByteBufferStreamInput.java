@@ -108,7 +108,7 @@ public class ByteBufferStreamInput extends StreamInput {
     }
 
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         buffer.reset();
     }
 
@@ -125,7 +125,7 @@ public class ByteBufferStreamInput extends StreamInput {
     }
 
     @Override
-    public void mark(int readlimit) {
+    public synchronized void mark(int readlimit) {
         buffer.mark();
     }
 
