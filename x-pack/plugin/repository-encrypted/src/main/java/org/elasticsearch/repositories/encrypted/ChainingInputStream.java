@@ -320,7 +320,7 @@ public abstract class ChainingInputStream extends InputStream {
      * @see     java.io.InputStream#mark(int)
      */
     @Override
-    public void mark(int readlimit) {
+    public synchronized void mark(int readlimit) {
         if (markSupported() && false == closed) {
             // closes any previously stored mark input stream
             if (markIn != null && markIn != EXHAUSTED_MARKER && currentIn != markIn) {
@@ -361,7 +361,7 @@ public abstract class ChainingInputStream extends InputStream {
      * @see     java.io.InputStream#mark(int)
      */
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         ensureOpen();
         if (false == markSupported()) {
             throw new IOException("Mark/reset not supported");

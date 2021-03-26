@@ -118,12 +118,12 @@ public final class PrefixInputStream extends InputStream {
     }
 
     @Override
-    public void mark(int readlimit) {
+    public synchronized void mark(int readlimit) {
         // mark and reset are not supported
     }
 
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         throw new IOException("mark/reset not supported");
     }
 

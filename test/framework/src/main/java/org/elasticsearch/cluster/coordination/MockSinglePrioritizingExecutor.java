@@ -23,7 +23,7 @@ public class MockSinglePrioritizingExecutor extends PrioritizedEsThreadPoolExecu
         super(name, 0, 1, 0L, TimeUnit.MILLISECONDS,
             r -> new Thread() {
                 @Override
-                public void start() {
+                public synchronized void start() {
                     deterministicTaskQueue.scheduleNow(new Runnable() {
                         @Override
                         public void run() {

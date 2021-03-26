@@ -258,7 +258,7 @@ public final class BufferOnMarkInputStream extends InputStream {
      * @see     java.io.InputStream#mark(int)
      */
     @Override
-    public void mark(int readlimit) {
+    public synchronized void mark(int readlimit) {
         // readlimit is otherwise ignored but this defensively fails if the caller is expecting to be able to mark/reset more than this
         // instance can accommodate in the fixed ring buffer
         if (readlimit > ringBuffer.getBufferSize()) {
@@ -295,7 +295,7 @@ public final class BufferOnMarkInputStream extends InputStream {
      * @see java.io.InputStream#mark(int)
      */
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         ensureOpen();
         if (false == storeToBuffer) {
             throw new IOException("Mark not called or has been invalidated");

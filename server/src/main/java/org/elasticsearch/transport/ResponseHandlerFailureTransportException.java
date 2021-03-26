@@ -26,7 +26,7 @@ public class ResponseHandlerFailureTransportException extends TransportException
     }
 
     @Override
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         return this;
     } // why is this?
 }

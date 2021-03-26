@@ -40,7 +40,7 @@ public class IntermittentLongGCDisruption extends LongGCDisruption {
     static final AtomicInteger thread_ids = new AtomicInteger();
 
     @Override
-    public void startDisrupting() {
+    public synchronized void startDisrupting() {
         disrupting = true;
         worker = new Thread(new BackgroundWorker(), "long_gc_simulation_" + thread_ids.incrementAndGet());
         worker.setDaemon(true);
@@ -48,7 +48,7 @@ public class IntermittentLongGCDisruption extends LongGCDisruption {
     }
 
     @Override
-    public void stopDisrupting() {
+    public synchronized void stopDisrupting() {
         if (worker == null) {
             return;
         }
