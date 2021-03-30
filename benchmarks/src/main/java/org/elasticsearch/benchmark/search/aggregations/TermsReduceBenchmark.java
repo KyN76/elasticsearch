@@ -197,23 +197,26 @@ public class TermsReduceBenchmark {
         request.source(new SearchSourceBuilder().size(0).aggregation(AggregationBuilders.terms("test")));
         request.setBatchedReduceSize(bufferSize);
         ExecutorService executor = Executors.newFixedThreadPool(1);
-        QueryPhaseResultConsumer consumer = new QueryPhaseResultConsumer(
-            request,
-            executor,
-            new NoopCircuitBreaker(CircuitBreaker.REQUEST),
-            controller,
-            SearchProgressListener.NOOP,
-            namedWriteableRegistry,
-            shards.size(),
-            exc -> {}
-        );
-        CountDownLatch latch = new CountDownLatch(shards.size());
-        for (int i = 0; i < shards.size(); i++) {
-            consumer.consumeResult(shards.get(i), () -> latch.countDown());
+        try (
+            QueryPhaseResultConsumer consumer = new QueryPhaseResultConsumer(
+               request,
+               executor,
+               new NoopCircuitBreaker(CircuitBreaker.REQUEST),
+               controller,
+               SearchProgressListener.NOOP,
+               namedWriteableRegistry,
+               shards.size(),
+               exc -> {}
+            );
+        ) {
+            CountDownLatch latch = new CountDownLatch(shards.size());
+            for (int i = 0; i < shards.size(); i++) {
+               consumer.consumeResult(shards.get(i), () -> latch.countDown());
+            }
+            latch.await();
+            SearchPhaseController.ReducedQueryPhase phase = consumer.reduce();
+            executor.shutdownNow();
+            return phase;
         }
-        latch.await();
-        SearchPhaseController.ReducedQueryPhase phase = consumer.reduce();
-        executor.shutdownNow();
-        return phase;
     }
 }
