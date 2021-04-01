@@ -47,6 +47,8 @@ class CreateKeyStoreCommand extends KeyStoreAwareCommand {
             terminal.println("Created elasticsearch keystore in " + KeyStoreWrapper.keystorePath(env.configFile()));
         } catch (SecurityException e) {
             throw new UserException(ExitCodes.IO_ERROR, "Error creating the elasticsearch keystore.");
+        } finally {
+            keystore.close(); 
         }
     }
 }
