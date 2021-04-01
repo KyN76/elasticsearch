@@ -107,7 +107,7 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
     }
 
     static List<Node> readHosts(HttpEntity entity, Scheme scheme, JsonFactory jsonFactory) throws IOException {
-        try (InputStream inputStream = entity.getContent() {
+        try (InputStream inputStream = entity.getContent()) {
             JsonParser parser = jsonFactory.createParser(inputStream);
             if (parser.nextToken() != JsonToken.START_OBJECT) {
                 throw new IOException("expected data to start with an object");
