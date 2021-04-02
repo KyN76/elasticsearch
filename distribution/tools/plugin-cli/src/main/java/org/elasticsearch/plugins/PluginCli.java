@@ -33,7 +33,9 @@ public class PluginCli extends LoggingAwareMultiCommand {
     }
 
     public static void main(String[] args) throws Exception {
-        exit(new PluginCli().main(args, Terminal.DEFAULT));
+        try (PluginCli pluginCli = new PluginCli()) {
+            exit(pluginCli.main(args, Terminal.DEFAULT));
+        }
     }
 
     @Override
