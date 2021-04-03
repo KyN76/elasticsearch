@@ -258,7 +258,7 @@ public class RunningStats implements Writeable, Cloneable {
             d2 = d * d;                 // delta mean squared
             d3 = d * d2;                // delta mean cubed
             d4 = d2 * d2;               // delta mean 4th power
-            n2 = docCount * docCount;   // num samples squared
+            n2 = (double) docCount * docCount;   // num samples squared
             nA2 = nA * nA;              // doc A num samples squared
             nB2 = nB * nB;              // doc B num samples squared
             // variance
@@ -276,7 +276,7 @@ public class RunningStats implements Writeable, Cloneable {
 
     /** Merges two covariance matrices */
     private void mergeCovariance(final RunningStats other, final Map<String, Double> deltas) {
-        final double countA = docCount - other.docCount;
+        final double countA = (double) docCount - other.docCount;
         double f, dR, newVal;
         for (Map.Entry<String, Double> fs : other.means.entrySet()) {
             final String fieldName = fs.getKey();

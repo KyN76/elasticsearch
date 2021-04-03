@@ -64,7 +64,7 @@ public abstract class AbstractBenchmark<T extends Closeable> {
         float totalDocs = Float.valueOf(args[5]);
         int bulkSize = Integer.valueOf(args[6]);
 
-        int totalIterationCount = (int) Math.ceil(totalDocs / bulkSize);
+        int totalIterationCount = (int) Math.ceil( (double) totalDocs / bulkSize);
         // consider 40% of all iterations as warmup iterations
         int warmupIterations = (int) (0.4d * totalIterationCount);
         int iterations = totalIterationCount - warmupIterations;

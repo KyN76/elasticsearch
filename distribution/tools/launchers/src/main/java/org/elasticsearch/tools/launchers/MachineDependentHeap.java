@@ -37,7 +37,7 @@ public final class MachineDependentHeap {
     private static final long GB = 1024L * 1024L * 1024L; // 1GB
     private static final long MAX_HEAP_SIZE = GB * 31; // 31GB
     private static final long MAX_ML_HEAP_SIZE = GB * 2; // 2GB
-    private static final long MIN_HEAP_SIZE = 1024 * 1024 * 128; // 128MB
+    private static final long MIN_HEAP_SIZE = 1024 * (long) 1024 * 128; // 128MB
     private static final int DEFAULT_HEAP_SIZE_MB = 1024;
     private static final String ELASTICSEARCH_YML = "elasticsearch.yml";
 
