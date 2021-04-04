@@ -132,7 +132,7 @@ public final class MinDocQuery extends Query {
 
         @Override
         public long cost() {
-            return maxDoc - segmentMinDoc;
+            return (long) maxDoc - segmentMinDoc;
         }
     }
 

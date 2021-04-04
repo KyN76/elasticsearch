@@ -152,7 +152,7 @@ public final class ResponseCollectorService implements ClusterStateListener {
             // the concurrency compensation is defined as the number of
             // outstanding requests from the client to the node times the number
             // of clients in the system
-            double concurrencyCompensation = outstandingRequests * clientNum;
+            double concurrencyCompensation = (double) outstandingRequests * clientNum;
 
             // Cubic queue adjustment factor. The paper chose 3 though we could
             // potentially make this configurable if desired.

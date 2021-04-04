@@ -208,7 +208,7 @@ public final class DirectCandidateGenerator extends CandidateGenerator {
     int thresholdTermFrequency(int docFreq) {
         if (docFreq > 0) {
             return (int) min(
-                max(0, round(docFreq * (log10(docFreq - frequencyPlateau) * (1.0 / log10(LOG_BASE))) + 1)), Integer.MAX_VALUE
+                max(0, round(docFreq * (log10((double) docFreq - frequencyPlateau) * (1.0 / log10(LOG_BASE))) + 1)), Integer.MAX_VALUE
             );
         }
         return 0;

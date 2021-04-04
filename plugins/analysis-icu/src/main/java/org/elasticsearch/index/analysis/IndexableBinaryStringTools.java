@@ -88,7 +88,7 @@ public final class IndexableBinaryStringTools {
     } else {
       // Use long for intermediaries to protect against overflow
       final long numFullBytesInFinalChar = encoded[offset + length - 1];
-      final long numEncodedChars = numChars - 1;
+      final long numEncodedChars = (long) numChars - 1;
       return (int)((numEncodedChars * 15L + 7L) / 8L + numFullBytesInFinalChar);
     }
   }

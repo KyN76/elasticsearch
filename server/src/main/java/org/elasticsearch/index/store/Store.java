@@ -902,7 +902,7 @@ public class Store extends AbstractIndexShardComponent implements Closeable, Ref
          * Computes a strong hash value for small files. Note that this method should only be used for files &lt; 1MB
          */
         public static void hashFile(BytesRefBuilder fileHash, InputStream in, long size) throws IOException {
-            final int len = (int) Math.min(1024 * 1024, size); // for safety we limit this to 1MB
+            final int len = (int) Math.min((long) 1024 * 1024, size); // for safety we limit this to 1MB
             fileHash.grow(len);
             fileHash.setLength(len);
             final int readBytes = Streams.readFully(in, fileHash.bytes(), 0, len);

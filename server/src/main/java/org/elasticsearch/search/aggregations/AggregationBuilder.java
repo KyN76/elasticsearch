@@ -30,7 +30,7 @@ import java.util.Set;
  */
 public abstract class AggregationBuilder
         implements NamedWriteable, ToXContentFragment, BaseAggregationBuilder, Rewriteable<AggregationBuilder> {
-    public static final long DEFAULT_PREALLOCATION = 1024 * 6;
+    public static final long DEFAULT_PREALLOCATION = (long) 1024 * 6;
 
     protected final String name;
     protected AggregatorFactories.Builder factoriesBuilder = AggregatorFactories.builder();

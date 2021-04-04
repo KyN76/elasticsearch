@@ -42,7 +42,7 @@ class ScriptedMetricAggregator extends MetricsAggregator {
      * inaccurate. We're sort of hoping that the real memory breaker saves
      * us here. Or that folks just don't use the aggregation.
      */
-    private static final long BUCKET_COST_ESTIMATE = 1024 * 5;
+    private static final long BUCKET_COST_ESTIMATE = (long) 1024 * 5;
 
     private final SearchLookup lookup;
     private final Map<String, Object> aggParams;

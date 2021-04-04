@@ -107,7 +107,7 @@ public class Netty4HttpServerTransport extends AbstractHttpServerTransport {
              * The tradeoff is between less (but larger) buffers that are contained in the CompositeByteBuf and more (but smaller) buffers.
              * With the default max content length of 100MB and a MTU of 1500 bytes we would allow 69905 entries.
              */
-            long maxBufferComponentsEstimate = Math.round((double) (maxContentLength.getBytes() / MTU.getBytes()));
+            long maxBufferComponentsEstimate = Math.round((double) ((double) maxContentLength.getBytes() / MTU.getBytes()));
             // clamp value to the allowed range
             long maxBufferComponents = Math.max(2, Math.min(maxBufferComponentsEstimate, Integer.MAX_VALUE));
             return String.valueOf(maxBufferComponents);

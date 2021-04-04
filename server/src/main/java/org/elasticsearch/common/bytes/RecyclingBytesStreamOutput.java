@@ -47,7 +47,7 @@ public class RecyclingBytesStreamOutput extends BytesStream {
             buffer[position++] = b;
         } else {
             ensureCapacity(position + 1);
-            overflow.set(position++ - buffer.length, b);
+            overflow.set((long) position++ - buffer.length, b);
         }
     }
 
@@ -76,7 +76,7 @@ public class RecyclingBytesStreamOutput extends BytesStream {
 
         if (length > 0) {
             ensureCapacity(position + length);
-            overflow.set(position - buffer.length, b, offset, length);
+            overflow.set((long) position - buffer.length, b, offset, length);
             position += length;
         }
     }
