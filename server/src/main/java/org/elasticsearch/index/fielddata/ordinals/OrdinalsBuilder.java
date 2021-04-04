@@ -153,7 +153,7 @@ public final class OrdinalsBuilder implements Closeable {
             if (ordinals[level] == null) {
                 ordinals[level] = new PagedGrowableWriter(8L * numSlots(level), PAGE_SIZE, startBitsPerValue, acceptableOverheadRatio);
             } else {
-                ordinals[level] = ordinals[level].grow(sizes[level] * numSlots(level));
+                ordinals[level] = ordinals[level].grow((long) sizes[level] * numSlots(level));
                 if (nextLevelSlices[level] != null) {
                     nextLevelSlices[level] = nextLevelSlices[level].grow(sizes[level]);
                 }

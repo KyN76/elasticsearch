@@ -49,8 +49,8 @@ class BinaryValuesSource extends SingleDimensionValuesSource<BytesRef> {
 
     @Override
     void copyCurrent(int slot) {
-        values =  bigArrays.grow(values, slot+1);
-        valueBuilders = bigArrays.grow(valueBuilders, slot+1);
+        values =  bigArrays.grow(values, (long) slot+1);
+        valueBuilders = bigArrays.grow(valueBuilders, (long) slot+1);
         BytesRefBuilder builder = valueBuilders.get(slot);
         int byteSize = builder == null ? 0 : builder.bytes().length;
         if (builder == null) {
@@ -62,7 +62,7 @@ class BinaryValuesSource extends SingleDimensionValuesSource<BytesRef> {
         } else {
             assert currentValue != null;
             builder.copyBytes(currentValue);
-            breakerConsumer.accept(builder.bytes().length - byteSize);
+            breakerConsumer.accept((long) builder.bytes().length - byteSize);
             values.set(slot, builder.get());
         }
     }

@@ -74,6 +74,6 @@ public class SimpleHeuristic extends SignificanceHeuristic {
      */
     @Override
     public double getScore(long subsetFreq, long subsetSize, long supersetFreq, long supersetSize) {
-        return subsetFreq / subsetSize > supersetFreq / supersetSize ? 2.0 : 1.0;
+        return (double) subsetFreq / subsetSize > (double) supersetFreq / supersetSize ? 2.0 : 1.0;
     }
 }

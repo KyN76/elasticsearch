@@ -135,7 +135,7 @@ final class CompositeValuesCollectorQueue extends PriorityQueue<Integer> impleme
         for (int i = 0; i < arrays.length; i++) {
             arrays[i].copyCurrent(slot);
         }
-        docCounts = bigArrays.grow(docCounts, slot+1);
+        docCounts = bigArrays.grow(docCounts, (long) slot+1);
         docCounts.set(slot, value);
     }
 

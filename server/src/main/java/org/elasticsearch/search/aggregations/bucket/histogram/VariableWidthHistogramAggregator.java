@@ -97,7 +97,7 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
         public CollectionPhase collectValue(LeafBucketCollector sub, int doc, double val) throws IOException{
             if (bufferSize < bufferLimit) {
                 // Add to the buffer i.e store the doc in a new bucket
-                buffer = bigArrays().grow(buffer, bufferSize + 1);
+                buffer = bigArrays().grow(buffer, (long) bufferSize + 1);
                 buffer.set((long) bufferSize, val);
                 collectBucket(sub, doc, bufferSize);
                 bufferSize += 1;
@@ -255,7 +255,7 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
             }
 
             LongUnaryOperator howToRewrite = b -> mergeMap[(int) b];
-            rewriteBuckets(bucketOrd + 1, howToRewrite);
+            rewriteBuckets((long) bucketOrd + 1, howToRewrite);
             if (deferringCollector != null) {
                 deferringCollector.rewriteBuckets(howToRewrite);
             }
@@ -270,7 +270,7 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
                 // TODO: (maybe) Create a new bucket for <b>all</b> distant docs and merge down to shardSize buckets at end
 
                 createAndAppendNewCluster(val);
-                collectBucket(sub, doc, numClusters - 1);
+                collectBucket(sub, doc, (long) numClusters - 1);
 
                 if(val > clusterCentroids.get(bucketOrd)){
                     /*
@@ -295,7 +295,7 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
 
         private void updateAvgBucketDistance() {
             // Centroids are sorted so the average distance is the difference between the first and last.
-            avgBucketDistance = (clusterCentroids.get(numClusters - 1) - clusterCentroids.get(0)) / (numClusters - 1);
+            avgBucketDistance = (clusterCentroids.get((long) numClusters - 1) - clusterCentroids.get(0)) / (numClusters - 1);
         }
 
         /**
@@ -303,10 +303,10 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
          */
         private void createAndAppendNewCluster(double value){
             // Ensure there is space for the cluster
-            clusterMaxes = bigArrays().grow(clusterMaxes, numClusters + 1); //  + 1 because indexing starts at 0
-            clusterMins = bigArrays().grow(clusterMins, numClusters + 1);
-            clusterCentroids = bigArrays().grow(clusterCentroids, numClusters + 1);
-            clusterSizes = bigArrays().grow(clusterSizes, numClusters + 1);
+            clusterMaxes = bigArrays().grow(clusterMaxes, (long) numClusters + 1); //  + 1 because indexing starts at 0
+            clusterMins = bigArrays().grow(clusterMins, (long) numClusters + 1);
+            clusterCentroids = bigArrays().grow(clusterCentroids, (long) numClusters + 1);
+            clusterSizes = bigArrays().grow(clusterSizes, (long) numClusters + 1);
 
             // Initialize the cluster at the end of the array
             clusterMaxes.set(numClusters, value);
@@ -327,16 +327,16 @@ public class VariableWidthHistogramAggregator extends DeferableBucketAggregator 
             if(index != numClusters - 1) {
 
                 // Move the cluster metadata
-                double holdMax = clusterMaxes.get(numClusters-1);
-                double holdMin = clusterMins.get(numClusters-1);
-                double holdCentroid = clusterCentroids.get(numClusters-1);
-                double holdSize = clusterSizes.get(numClusters-1);
+                double holdMax = clusterMaxes.get((long) numClusters-1);
+                double holdMin = clusterMins.get((long) numClusters-1);
+                double holdCentroid = clusterCentroids.get((long) numClusters-1);
+                double holdSize = clusterSizes.get((long) numClusters-1);
                 for (int i = numClusters - 1; i > index; i--) {
                     // The clusters in range {index ... numClusters - 1} move up 1 index to make room for the new cluster
-                    clusterMaxes.set(i, clusterMaxes.get(i-1));
-                    clusterMins.set(i, clusterMins.get(i-1));
-                    clusterCentroids.set(i, clusterCentroids.get(i-1));
-                    clusterSizes.set(i, clusterSizes.get(i-1));
+                    clusterMaxes.set(i, clusterMaxes.get((long) i-1));
+                    clusterMins.set(i, clusterMins.get((long) i-1));
+                    clusterCentroids.set(i, clusterCentroids.get((long) i-1));
+                    clusterSizes.set(i, clusterSizes.get((long) i-1));
                 }
                 clusterMaxes.set(index, holdMax);
                 clusterMins.set(index, holdMin);
