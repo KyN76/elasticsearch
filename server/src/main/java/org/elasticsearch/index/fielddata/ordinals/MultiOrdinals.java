@@ -125,7 +125,7 @@ public class MultiOrdinals extends Ordinals {
         @Override
         public boolean advanceExact(int docId) throws IOException {
             currentDoc = docId;
-            currentStartOffset = docId != 0 ? endOffsets.get((long) docId - 1) : 0;
+            currentStartOffset = docId != 0 ? endOffsets.get(docId - 1) : 0;
             currentEndOffset = endOffsets.get(docId);
             return currentStartOffset != currentEndOffset;
         }
@@ -171,7 +171,7 @@ public class MultiOrdinals extends Ordinals {
 
         @Override
         public boolean advanceExact(int docId) throws IOException {
-            currentOffset = docId != 0 ? endOffsets.get((long) docId - 1) : 0;
+            currentOffset = docId != 0 ? endOffsets.get(docId - 1) : 0;
             currentEndOffset = endOffsets.get(docId);
             return currentOffset != currentEndOffset;
         }

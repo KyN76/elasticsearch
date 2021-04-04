@@ -61,7 +61,7 @@ class LongValuesSource extends SingleDimensionValuesSource<Long> {
 
     @Override
     void copyCurrent(int slot) {
-        values = bigArrays.grow(values, (long) slot+1);
+        values = bigArrays.grow(values, slot+1);
         if (missingBucket && missingCurrentValue) {
             bits.clear(slot);
         } else {

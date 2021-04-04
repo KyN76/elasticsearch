@@ -54,6 +54,6 @@ public class NioHttpResponseCreator extends MessageToMessageEncoder<NioHttpRespo
     }
 
     private static long suggestedMaxAllocationSize() {
-        return Math.max(Math.max(JvmInfo.jvmInfo().getG1RegionSize(), 0) >> 2, (long) 256 * 1024);
+        return Math.max(Math.max(JvmInfo.jvmInfo().getG1RegionSize(), 0) >> 2, 256 * 1024);
     }
 }

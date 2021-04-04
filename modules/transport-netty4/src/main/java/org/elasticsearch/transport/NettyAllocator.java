@@ -40,7 +40,7 @@ public class NettyAllocator {
     static {
         if (Booleans.parseBoolean(System.getProperty(USE_NETTY_DEFAULT), false)) {
             ALLOCATOR = ByteBufAllocator.DEFAULT;
-            SUGGESTED_MAX_ALLOCATION_SIZE = (long) 1024 * 1024;
+            SUGGESTED_MAX_ALLOCATION_SIZE = 1024 * 1024;
             DESCRIPTION = "[name=netty_default, suggested_max_allocation_size=" + new ByteSizeValue(SUGGESTED_MAX_ALLOCATION_SIZE)
                 + ", factors={es.unsafe.use_netty_default_allocator=true}]";
         } else {
@@ -57,9 +57,9 @@ public class NettyAllocator {
                 if (g1gcEnabled && g1gcRegionSizeIsKnown) {
                     // Suggested max allocation size 1/4 of region size. Guard against unknown edge cases
                     // where this value would be less than 256KB.
-                    SUGGESTED_MAX_ALLOCATION_SIZE = Math.max(g1gcRegionSizeInBytes >> 2, (long) 256 * 1024);
+                    SUGGESTED_MAX_ALLOCATION_SIZE = Math.max(g1gcRegionSizeInBytes >> 2, 256 * 1024);
                 } else {
-                    SUGGESTED_MAX_ALLOCATION_SIZE = (long) 1024 * 1024;
+                    SUGGESTED_MAX_ALLOCATION_SIZE = 1024 * 1024;
                 }
                 DESCRIPTION = "[name=unpooled, suggested_max_allocation_size=" + new ByteSizeValue(SUGGESTED_MAX_ALLOCATION_SIZE)
                     + ", factors={es.unsafe.use_unpooled_allocator=" + System.getProperty(USE_UNPOOLED)

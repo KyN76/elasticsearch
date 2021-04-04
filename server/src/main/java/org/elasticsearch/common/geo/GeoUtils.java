@@ -92,7 +92,7 @@ public class GeoUtils {
         assert level>=0;
         // Geohash cells are split into 32 cells at each level. the grid
         // alternates at each level between a 8x4 and a 4x8 grid
-        return EARTH_EQUATOR / (1L<<((((double) (level+1)/2)*3) + (((double) level/2)*2)));
+        return EARTH_EQUATOR / (1L<<((((level+1)/2)*3) + ((level/2)*2)));
     }
 
     /**
@@ -114,7 +114,7 @@ public class GeoUtils {
         assert level>=0;
         // Geohash cells are split into 32 cells at each level. the grid
         // alternates at each level between a 8x4 and a 4x8 grid
-        return EARTH_POLAR_DISTANCE / (1L<<((((double) (level+1)/2)*2) + (((double) level/2)*3)));
+        return EARTH_POLAR_DISTANCE / (1L<<((((level+1)/2)*2) + ((level/2)*3)));
     }
 
     /**

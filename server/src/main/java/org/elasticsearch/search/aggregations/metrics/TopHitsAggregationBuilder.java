@@ -600,7 +600,7 @@ public class TopHitsAggregationBuilder extends AbstractAggregationBuilder<TopHit
     @Override
     protected TopHitsAggregatorFactory doBuild(AggregationContext context, AggregatorFactory parent, Builder subfactoriesBuilder)
             throws IOException {
-        long innerResultWindow = (long) from() + size();
+        long innerResultWindow = from() + size();
         int maxInnerResultWindow = context.getIndexSettings().getMaxInnerResultWindow();
         if (innerResultWindow > maxInnerResultWindow) {
             throw new IllegalArgumentException(

@@ -68,7 +68,7 @@ public class DuplicateByteSequenceSpotter {
     private long bytesAllocated;
     // Root node object plus inner-class reference to containing "this"
     // (profiler suggested this was a cost)
-    static final long TREE_NODE_OBJECT_SIZE = (long) RamUsageEstimator.NUM_BYTES_OBJECT_HEADER + RamUsageEstimator.NUM_BYTES_OBJECT_REF;
+    static final long TREE_NODE_OBJECT_SIZE = RamUsageEstimator.NUM_BYTES_OBJECT_HEADER + RamUsageEstimator.NUM_BYTES_OBJECT_REF;
     // A TreeNode specialization with an array ref (dynamically allocated and
     // fixed-size)
     static final long ROOT_TREE_NODE_OBJECT_SIZE = TREE_NODE_OBJECT_SIZE + RamUsageEstimator.NUM_BYTES_OBJECT_REF;

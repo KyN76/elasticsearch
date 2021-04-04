@@ -1201,7 +1201,7 @@ public class IndicesService extends AbstractLifecycleComponent
             if (remove != null && remove.isEmpty() == false) {
                 numRemoved = remove.size();
                 CollectionUtil.timSort(remove); // make sure we delete indices first
-                final long maxSleepTimeMs = (long) 10 * 1000; // ensure we retry after 10 sec
+                final long maxSleepTimeMs = 10 * 1000; // ensure we retry after 10 sec
                 long sleepTime = 10;
                 do {
                     if (remove.isEmpty()) {

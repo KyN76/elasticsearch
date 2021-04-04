@@ -145,8 +145,8 @@ final class SystemCallFilter {
         SockFProg(SockFilter filters[]) {
             len = (short) filters.length;
             // serialize struct sock_filter * explicitly, its less confusing than the JNA magic we would need
-            Memory filter = new Memory((long) len * 8);
-            ByteBuffer bbuf = filter.getByteBuffer(0, (long) len * 8);
+            Memory filter = new Memory(len * 8);
+            ByteBuffer bbuf = filter.getByteBuffer(0, len * 8);
             bbuf.order(ByteOrder.nativeOrder()); // little endian
             for (SockFilter f : filters) {
                 bbuf.putShort(f.code);

@@ -530,13 +530,13 @@ public abstract class LocalTimeOffset {
         }
 
         protected static NoPrevious buildNoPrevious(ZoneOffsetTransition transition) {
-            return new NoPrevious((long) transition.getOffsetBefore().getTotalSeconds() * 1000);
+            return new NoPrevious(transition.getOffsetBefore().getTotalSeconds() * 1000);
         }
 
         protected static Transition buildTransition(ZoneOffsetTransition transition, LocalTimeOffset previous) {
             long utcStart = transition.toEpochSecond() * 1000;
-            long offsetBeforeMillis = (long) transition.getOffsetBefore().getTotalSeconds() * 1000;
-            long offsetAfterMillis = (long) transition.getOffsetAfter().getTotalSeconds() * 1000;
+            long offsetBeforeMillis = transition.getOffsetBefore().getTotalSeconds() * 1000;
+            long offsetAfterMillis = transition.getOffsetAfter().getTotalSeconds() * 1000;
             assert (false == previous instanceof Transition) || ((Transition) previous).startUtcMillis < utcStart :
                     "transition list out of order at [" + previous + "] and [" + transition + "]";
             assert previous.millis != offsetAfterMillis :
@@ -574,7 +574,7 @@ public abstract class LocalTimeOffset {
         if (false == rules.isFixedOffset()) {
             return null;
         }
-        LocalTimeOffset fixedTransition = new NoPrevious((long) rules.getOffset(Instant.EPOCH).getTotalSeconds() * 1000);
+        LocalTimeOffset fixedTransition = new NoPrevious(rules.getOffset(Instant.EPOCH).getTotalSeconds() * 1000);
         return fixedTransition;
     }
 

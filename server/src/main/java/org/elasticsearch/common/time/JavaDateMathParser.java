@@ -124,7 +124,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusYears(1);
                         }
                     } else {
-                        dateTime = dateTime.plusYears((long) sign * num);
+                        dateTime = dateTime.plusYears(sign * num);
                     }
                     break;
                 case 'M':
@@ -134,7 +134,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusMonths(1);
                         }
                     } else {
-                        dateTime = dateTime.plusMonths((long) sign * num);
+                        dateTime = dateTime.plusMonths(sign * num);
                     }
                     break;
                 case 'w':
@@ -144,7 +144,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusWeeks(1);
                         }
                     } else {
-                        dateTime = dateTime.plusWeeks((long) sign * num);
+                        dateTime = dateTime.plusWeeks(sign * num);
                     }
                     break;
                 case 'd':
@@ -154,7 +154,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusDays(1);
                         }
                     } else {
-                        dateTime = dateTime.plusDays((long) sign * num);
+                        dateTime = dateTime.plusDays(sign * num);
                     }
                     break;
                 case 'h':
@@ -165,7 +165,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusHours(1);
                         }
                     } else {
-                        dateTime = dateTime.plusHours((long) sign * num);
+                        dateTime = dateTime.plusHours(sign * num);
                     }
                     break;
                 case 'm':
@@ -175,7 +175,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusMinutes(1);
                         }
                     } else {
-                        dateTime = dateTime.plusMinutes((long) sign * num);
+                        dateTime = dateTime.plusMinutes(sign * num);
                     }
                     break;
                 case 's':
@@ -185,7 +185,7 @@ public class JavaDateMathParser implements DateMathParser {
                             dateTime = dateTime.plusSeconds(1);
                         }
                     } else {
-                        dateTime = dateTime.plusSeconds((long) sign * num);
+                        dateTime = dateTime.plusSeconds(sign * num);
                     }
                     break;
                 default:

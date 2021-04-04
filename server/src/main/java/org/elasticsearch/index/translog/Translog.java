@@ -1155,7 +1155,7 @@ public class Translog extends AbstractIndexShardComponent implements IndexShardC
             return (2 * id.length())
                 + source.length()
                 + (routing != null ? 2 * routing.length() : 0)
-                + (long) (4 * Long.BYTES); // timestamp, seq_no, primary_term, and version
+                + (4 * Long.BYTES); // timestamp, seq_no, primary_term, and version
         }
 
         public String id() {
@@ -1319,7 +1319,7 @@ public class Translog extends AbstractIndexShardComponent implements IndexShardC
         @Override
         public long estimateSize() {
             return (2 * id.length())
-                + (long) (3 * Long.BYTES); // seq_no, primary_term, and version;
+                + (3 * Long.BYTES); // seq_no, primary_term, and version;
         }
 
         public String id() {
@@ -1448,7 +1448,7 @@ public class Translog extends AbstractIndexShardComponent implements IndexShardC
 
         @Override
         public long estimateSize() {
-            return (long) 2 * reason.length() + 2 * Long.BYTES;
+            return 2 * reason.length() + 2 * Long.BYTES;
         }
 
         @Override
@@ -1533,7 +1533,7 @@ public class Translog extends AbstractIndexShardComponent implements IndexShardC
                 // to prevent this unfortunately.
                 in.mark(opSize);
 
-                in.skip((long) opSize - 4);
+                in.skip(opSize - 4);
                 verifyChecksum(in);
                 in.reset();
             }

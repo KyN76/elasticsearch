@@ -91,42 +91,42 @@ public abstract class NXYSignificanceHeuristic extends SignificanceHeuristic {
         Frequencies frequencies = new Frequencies();
         if (backgroundIsSuperset) {
             //documents not in class and do not contain term
-            frequencies.N00 = supersetSize - (double) supersetFreq - (subsetSize - subsetFreq);
+            frequencies.N00 = supersetSize - supersetFreq - (subsetSize - subsetFreq);
             //documents in class and do not contain term
             frequencies.N01 = (subsetSize - subsetFreq);
             // documents not in class and do contain term
-            frequencies.N10 = (double) supersetFreq - subsetFreq;
+            frequencies.N10 = supersetFreq - subsetFreq;
             // documents in class and do contain term
             frequencies.N11 = subsetFreq;
             //documents that do not contain term
-            frequencies.N0_ = (double) supersetSize - supersetFreq;
+            frequencies.N0_ = supersetSize - supersetFreq;
             //documents that contain term
             frequencies.N1_ = supersetFreq;
             //documents that are not in class
-            frequencies.N_0 = (double) supersetSize - subsetSize;
+            frequencies.N_0 = supersetSize - subsetSize;
             //documents that are in class
             frequencies.N_1 = subsetSize;
             //all docs
             frequencies.N = supersetSize;
         } else {
             //documents not in class and do not contain term
-            frequencies.N00 = (double) supersetSize - supersetFreq;
+            frequencies.N00 = supersetSize - supersetFreq;
             //documents in class and do not contain term
-            frequencies.N01 = (double) subsetSize - subsetFreq;
+            frequencies.N01 = subsetSize - subsetFreq;
             // documents not in class and do contain term
             frequencies.N10 = supersetFreq;
             // documents in class and do contain term
             frequencies.N11 = subsetFreq;
             //documents that do not contain term
-            frequencies.N0_ = supersetSize - supersetFreq + (double) subsetSize - subsetFreq;
+            frequencies.N0_ = supersetSize - supersetFreq + subsetSize - subsetFreq;
             //documents that contain term
-            frequencies.N1_ = (double) supersetFreq + subsetFreq;
+            frequencies.N1_ = supersetFreq + subsetFreq;
             //documents that are not in class
             frequencies.N_0 = supersetSize;
             //documents that are in class
             frequencies.N_1 = subsetSize;
             //all docs
-            frequencies.N = (double) supersetSize + subsetSize;
+            frequencies.N = supersetSize + subsetSize;
         }
         return frequencies;
     }

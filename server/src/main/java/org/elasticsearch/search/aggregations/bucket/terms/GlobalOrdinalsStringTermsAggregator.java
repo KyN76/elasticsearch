@@ -319,7 +319,7 @@ public class GlobalOrdinalsStringTermsAggregator extends AbstractStringTermsAggr
                         }
                         int ord = singleValues.ordValue();
                         int docCount = docCountProvider.getDocCount(doc);
-                        segmentDocCounts.increment((long) ord + 1, docCount);
+                        segmentDocCounts.increment(ord + 1, docCount);
                     }
                 });
             }

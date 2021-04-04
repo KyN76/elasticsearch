@@ -179,7 +179,7 @@ public final class IndexSettings {
              * can get stuck in an infinite loop as the shouldPeriodicallyFlush can still be true after flushing.
              * However, small thresholds are useful for testing so we do not add a large lower bound here.
              */
-            new ByteSizeValue((long) Translog.DEFAULT_HEADER_SIZE_IN_BYTES + 1, ByteSizeUnit.BYTES),
+            new ByteSizeValue(Translog.DEFAULT_HEADER_SIZE_IN_BYTES + 1, ByteSizeUnit.BYTES),
             new ByteSizeValue(Long.MAX_VALUE, ByteSizeUnit.BYTES),
             Property.Dynamic, Property.IndexScope);
 
@@ -206,7 +206,7 @@ public final class IndexSettings {
                      * generation threshold. However, small thresholds are useful for testing so we
                      * do not add a large lower bound here.
                      */
-                    new ByteSizeValue((long) Translog.DEFAULT_HEADER_SIZE_IN_BYTES + 1, ByteSizeUnit.BYTES),
+                    new ByteSizeValue(Translog.DEFAULT_HEADER_SIZE_IN_BYTES + 1, ByteSizeUnit.BYTES),
                     new ByteSizeValue(Long.MAX_VALUE, ByteSizeUnit.BYTES),
                     Property.Dynamic, Property.IndexScope);
 

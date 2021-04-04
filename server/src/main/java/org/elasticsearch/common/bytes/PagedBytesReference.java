@@ -37,7 +37,7 @@ public class PagedBytesReference extends AbstractBytesReference {
 
     @Override
     public byte get(int index) {
-        return byteArray.get((long) offset + index);
+        return byteArray.get(offset + index);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class PagedBytesReference extends AbstractBytesReference {
             @Override
             public BytesRef next() throws IOException {
                 if (nextFragmentSize != 0) {
-                    final boolean materialized = byteArray.get((long) offset + position, nextFragmentSize, slice);
+                    final boolean materialized = byteArray.get(offset + position, nextFragmentSize, slice);
                     assert materialized == false : "iteration should be page aligned but array got materialized";
                     position += nextFragmentSize;
                     final int remaining = length - position;

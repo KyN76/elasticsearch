@@ -123,7 +123,7 @@ public class BestBucketsDeferringCollector extends DeferringBucketCollector {
                     docDeltasBuilder = PackedLongValues.packedBuilder(PackedInts.DEFAULT);
                     bucketsBuilder = PackedLongValues.packedBuilder(PackedInts.DEFAULT);
                 }
-                docDeltasBuilder.add((long) doc - lastDoc);
+                docDeltasBuilder.add(doc - lastDoc);
                 bucketsBuilder.add(bucket);
                 lastDoc = doc;
             }
