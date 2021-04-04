@@ -29,7 +29,7 @@ public final class MonitoringField {
      * @see MonitoringField#HISTORY_DURATION_MINIMUM
      */
     public static final Setting<TimeValue> HISTORY_DURATION = timeSetting("xpack.monitoring.history.duration",
-                                                      TimeValue.timeValueHours(7 * 24), // default value (7 days)
+                                                      TimeValue.timeValueHours((long) 7 * 24), // default value (7 days)
                                                       HISTORY_DURATION_MINIMUM,         // minimum value
                                                       Setting.Property.Dynamic, Setting.Property.NodeScope);
 

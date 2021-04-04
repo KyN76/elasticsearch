@@ -1290,7 +1290,7 @@ public class ApiKeyService {
             // multiple API keys, so we cache for longer and rely on the weight to manage the cache size.
             this.roleDescriptorsBytesCache = CacheBuilder.<String, BytesReference>builder()
                 .setExpireAfterAccess(TimeValue.timeValueHours(1))
-                .setMaximumWeight(maximumWeight * 2)
+                .setMaximumWeight((long) maximumWeight * 2)
                 .build();
         }
 

@@ -112,7 +112,7 @@ public final class FieldPermissions implements Accountable {
      * that wraps the given automaton.
      */
     private static long runAutomatonRamBytesUsed(Automaton a) {
-        return a.getNumStates() * 5; // wild guess, better than 0
+        return (long) a.getNumStates() * 5; // wild guess, better than 0
     }
 
     public static Automaton initializePermittedFieldsAutomaton(FieldPermissionsDefinition fieldPermissionsDefinition) {

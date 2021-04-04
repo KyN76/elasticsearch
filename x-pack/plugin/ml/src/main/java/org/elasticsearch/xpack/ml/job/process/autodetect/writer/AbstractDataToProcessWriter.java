@@ -102,7 +102,7 @@ public abstract class AbstractDataToProcessWriter implements DataToProcessWriter
 
         inputOutputMap = createInputOutputMap(inFieldIndexes);
         // The time field doesn't count
-        dataCountsReporter.setAnalysedFieldsPerRecord(inputFields().size() - 1);
+        dataCountsReporter.setAnalysedFieldsPerRecord((long) inputFields().size() - 1);
     }
 
     /**

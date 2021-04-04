@@ -105,7 +105,7 @@ public class Sequence implements Comparable<Sequence> {
         sb.append(format(null, "[Seq<{}>[{}/{}]]",
                 key,
                 nf.format(currentStage),
-                nf.format(stages - 1)));
+                nf.format((long) stages - 1)));
 
         for (int i = 0; i < matches.length; i++) {
             sb.append(format(null, "\n [{}]={{}}", nf.format(i), matches[i]));

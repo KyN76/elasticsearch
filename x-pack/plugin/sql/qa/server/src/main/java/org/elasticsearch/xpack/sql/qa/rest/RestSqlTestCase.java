@@ -140,7 +140,7 @@ public abstract class RestSqlTestCase extends BaseRestSqlTestCase implements Err
                     Arrays.asList(
                         Arrays.asList("text" + i, "text" + (i + 1)),
                         Arrays.asList(i, i + 1),
-                        Arrays.asList(Math.sqrt(i), Math.sqrt(i + 1)),
+                        Arrays.asList(Math.sqrt(i), Math.sqrt((double) i + 1)),
                         Arrays.asList(value, value)
                     )
                 );
@@ -149,7 +149,7 @@ public abstract class RestSqlTestCase extends BaseRestSqlTestCase implements Err
                     "rows",
                     Arrays.asList(
                         Arrays.asList("text" + i, i, Math.sqrt(i), value),
-                        Arrays.asList("text" + (i + 1), i + 1, Math.sqrt(i + 1), value)
+                        Arrays.asList("text" + (i + 1), i + 1, Math.sqrt((double) i + 1), value)
                     )
                 );
             }

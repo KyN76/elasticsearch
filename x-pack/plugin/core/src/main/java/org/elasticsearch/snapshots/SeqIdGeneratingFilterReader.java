@@ -123,7 +123,7 @@ final class SeqIdGeneratingFilterReader extends FilterDirectoryReader {
                         return new FakeNumericDocValues(maxDoc()) {
                             @Override
                             public long longValue() {
-                                return docBase + docID;
+                                return (long) docBase + docID;
                             }
                         };
                     } else if (SeqNoFieldMapper.PRIMARY_TERM_NAME.equals(field)) {

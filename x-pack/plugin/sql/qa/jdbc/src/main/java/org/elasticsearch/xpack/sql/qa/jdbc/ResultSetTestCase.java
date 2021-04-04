@@ -244,10 +244,10 @@ public abstract class ResultSetTestCase extends JdbcIntegrationTestCase {
         });
 
         int intNotByte = randomIntBetween(Byte.MAX_VALUE + 1, Integer.MAX_VALUE);
-        long longNotByte = randomLongBetween(Byte.MAX_VALUE + 1, Long.MAX_VALUE);
+        long longNotByte = randomLongBetween((long) Byte.MAX_VALUE + 1, Long.MAX_VALUE);
         short shortNotByte = (short) randomIntBetween(Byte.MAX_VALUE + 1, Short.MAX_VALUE);
-        double doubleNotByte = randomDoubleBetween(Byte.MAX_VALUE + 1, Double.MAX_VALUE, true);
-        float floatNotByte = randomFloatBetween(Byte.MAX_VALUE + 1, Float.MAX_VALUE);
+        double doubleNotByte = randomDoubleBetween((double) Byte.MAX_VALUE + 1, Double.MAX_VALUE, true);
+        float floatNotByte = randomFloatBetween((float) Byte.MAX_VALUE + 1, Float.MAX_VALUE);
         String randomString = randomUnicodeOfCodepointLengthBetween(128, 256);
         long randomDate = randomNonNegativeLong();
 
@@ -375,9 +375,9 @@ public abstract class ResultSetTestCase extends JdbcIntegrationTestCase {
         });
 
         int intNotShort = randomIntBetween(Short.MAX_VALUE + 1, Integer.MAX_VALUE);
-        long longNotShort = randomLongBetween(Short.MAX_VALUE + 1, Long.MAX_VALUE);
-        double doubleNotShort = randomDoubleBetween(Short.MAX_VALUE + 1, Double.MAX_VALUE, true);
-        float floatNotShort = randomFloatBetween(Short.MAX_VALUE + 1, Float.MAX_VALUE);
+        long longNotShort = randomLongBetween((long) Short.MAX_VALUE + 1, Long.MAX_VALUE);
+        double doubleNotShort = randomDoubleBetween((double) Short.MAX_VALUE + 1, Double.MAX_VALUE, true);
+        float floatNotShort = randomFloatBetween((float) Short.MAX_VALUE + 1, Float.MAX_VALUE);
         String randomString = randomUnicodeOfCodepointLengthBetween(128, 256);
         long randomDate = randomNonNegativeLong();
 

@@ -100,7 +100,7 @@ public class GeoHashGridTiler implements GeoGridTiler {
                     values.resizeCell(valuesIndex + 1);
                     values.add(valuesIndex++, Geohash.longEncode(hashes[i]));
                 } else {
-                    values.resizeCell(valuesIndex + (int) Math.pow(32, targetPrecision - hash.length()) + 1);
+                    values.resizeCell(valuesIndex + (int) Math.pow(32, (double) targetPrecision - hash.length()) + 1);
                     valuesIndex = setValuesForFullyContainedTile(hashes[i],values, valuesIndex, targetPrecision);
                 }
             }

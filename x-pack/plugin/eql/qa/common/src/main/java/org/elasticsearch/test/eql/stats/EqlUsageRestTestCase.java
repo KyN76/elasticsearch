@@ -320,7 +320,7 @@ public abstract class EqlUsageRestTestCase extends ESRestTestCase {
             Map featuresMetrics = getFeaturesMetrics(perNodeStats);
             actualMetricValue += (int) featuresMetrics.get(feature);
         }
-        assertEquals(expected + baseMetrics.get(feature), actualMetricValue);
+        assertEquals((long) expected + baseMetrics.get(feature), actualMetricValue);
 
         /*
          * update the base value for future checks in {@link #assertFeaturesMetricsExcept(Set, Map)}

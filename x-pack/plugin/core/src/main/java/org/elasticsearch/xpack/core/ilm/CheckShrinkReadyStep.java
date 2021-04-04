@@ -84,7 +84,7 @@ public class CheckShrinkReadyStep extends ClusterStateWaitStep {
             logger.trace("{} failed to find {} allocated shards (found {}) on node [{}] for shrink readiness ({})",
                 index, expectedShardCount, foundShards, idShardsShouldBeOn, getKey().getAction());
             return new Result(false, new CheckShrinkReadyStep.Info(idShardsShouldBeOn, expectedShardCount,
-                expectedShardCount - foundShards));
+                (long) expectedShardCount - foundShards));
         }
     }
 

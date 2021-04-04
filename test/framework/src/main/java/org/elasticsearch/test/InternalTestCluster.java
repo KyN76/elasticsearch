@@ -448,12 +448,12 @@ public final class InternalTestCluster extends TestCluster {
             builder.put("cache.recycler.page.type", RandomPicks.randomFrom(random, PageCacheRecycler.Type.values()));
         }
         if (random.nextInt(10) == 0) { // 10% of the nodes have a very frequent check interval
-            builder.put(SearchService.KEEPALIVE_INTERVAL_SETTING.getKey(), timeValueMillis(10 + random.nextInt(2000)).getStringRep());
+            builder.put(SearchService.KEEPALIVE_INTERVAL_SETTING.getKey(), timeValueMillis((long) 10 + random.nextInt(2000)).getStringRep());
         } else if (random.nextInt(10) != 0) { // 90% of the time - 10% of the time we don't set anything
-            builder.put(SearchService.KEEPALIVE_INTERVAL_SETTING.getKey(), timeValueSeconds(10 + random.nextInt(5 * 60)).getStringRep());
+            builder.put(SearchService.KEEPALIVE_INTERVAL_SETTING.getKey(), timeValueSeconds((long) 10 + random.nextInt(5 * 60)).getStringRep());
         }
         if (random.nextBoolean()) { // sometimes set a
-            builder.put(SearchService.DEFAULT_KEEPALIVE_SETTING.getKey(), timeValueSeconds(100 + random.nextInt(5 * 60)).getStringRep());
+            builder.put(SearchService.DEFAULT_KEEPALIVE_SETTING.getKey(), timeValueSeconds((long) 100 + random.nextInt(5 * 60)).getStringRep());
         }
 
         builder.put(
@@ -461,7 +461,7 @@ public final class InternalTestCluster extends TestCluster {
             1 + random.nextInt(Math.min(4, Runtime.getRuntime().availableProcessors())));
         if (random.nextBoolean()) {
             if (random.nextBoolean()) {
-                builder.put("indices.fielddata.cache.size", 1 + random.nextInt(1000), ByteSizeUnit.MB);
+                builder.put("indices.fielddata.cache.size", (long) 1 + random.nextInt(1000), ByteSizeUnit.MB);
             }
         }
 

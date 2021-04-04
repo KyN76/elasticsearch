@@ -163,7 +163,7 @@ public abstract class AbstractBytesReferenceTestCase extends ESTestCase {
         // read a bunch of single bytes one by one
         int offset = randomIntBetween(1, length / 2);
         for (int i = 0; i < offset; i++) {
-            assertEquals(si.available(), length - i);
+            assertEquals(si.available(), (long) length - i);
             assertEquals(pbr.get(i), si.readByte());
         }
 
@@ -225,7 +225,7 @@ public abstract class AbstractBytesReferenceTestCase extends ESTestCase {
         assertEquals(slice.get(0), sliceInput.readByte());
         assertEquals(slice.get(1), sliceInput.readByte());
         assertEquals(slice.get(2), sliceInput.readByte());
-        assertEquals(sliceInput.available(), sliceLength - 3);
+        assertEquals(sliceInput.available(), (long) sliceLength - 3);
 
         // reset the slice stream for bulk reading
         sliceInput.reset();
@@ -250,7 +250,7 @@ public abstract class AbstractBytesReferenceTestCase extends ESTestCase {
         byte[] buffer = new byte[sliceLength + scaledRandomIntBetween(1, 100)];
         int offset = scaledRandomIntBetween(0, Math.max(1, buffer.length - sliceLength - 1));
         int read = sliceInput.read(buffer, offset, sliceLength / 2);
-        assertEquals(sliceInput.available(), sliceLength - read);
+        assertEquals(sliceInput.available(), (long) sliceLength - read);
         sliceInput.read(buffer, offset + read, sliceLength - read);
         assertArrayEquals(sliceBytes, Arrays.copyOfRange(buffer, offset, offset + sliceLength));
         assertEquals(sliceInput.available(), 0);
@@ -279,9 +279,9 @@ public abstract class AbstractBytesReferenceTestCase extends ESTestCase {
                     continue; // no more bytes to retrieve!
                 }
                 final int nextOffset = randomIntBetween(offset, length-2);
-                assertEquals(nextOffset - offset, input.skip(nextOffset - offset));
+                assertEquals((long) nextOffset - offset, input.skip((long) nextOffset - offset));
                 assertEquals(pbr.get(nextOffset+1), input.readByte()); // +1 for the one byte we read above
-                assertEquals(length - (nextOffset+2), input.skip(Long.MAX_VALUE));
+                assertEquals((long) length - (nextOffset+2), input.skip(Long.MAX_VALUE));
                 assertEquals(0, input.skip(randomIntBetween(0, Integer.MAX_VALUE)));
             }
         }
