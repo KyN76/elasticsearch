@@ -131,6 +131,8 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                 }
             }
             return nodes;
+        } finally {
+            parser.close();
         }
     }
 

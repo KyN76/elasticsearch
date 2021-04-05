@@ -29,37 +29,39 @@ public abstract class SymbolicLinkPreservingUntarTransform implements UnpackTran
 
     public void unpack(File tarFile, File targetDir) throws IOException {
         Function<String, Path> pathModifier = pathResolver();
-        TarArchiveInputStream tar = new TarArchiveInputStream(new GzipCompressorInputStream(new FileInputStream(tarFile)));
-        final Path destinationPath = targetDir.toPath();
-        TarArchiveEntry entry = tar.getNextTarEntry();
-        while (entry != null) {
-            final Path relativePath = pathModifier.apply(entry.getName());
-            if (relativePath == null || relativePath.getFileName().equals(CURRENT_DIR_PATH)) {
-                entry = tar.getNextTarEntry();
-                continue;
-            }
+        try (TarArchiveInputStream tar = new TarArchiveInputStream(new GzipCompressorInputStream(new FileInputStream(tarFile))); ) {
 
-            final Path destination = destinationPath.resolve(relativePath);
-            final Path parent = destination.getParent();
-            if (Files.exists(parent) == false) {
-                Files.createDirectories(parent);
-            }
-            if (entry.isDirectory()) {
-                Files.createDirectory(destination);
-            } else if (entry.isSymbolicLink()) {
-                Files.createSymbolicLink(destination, Paths.get(entry.getLinkName()));
-            } else {
-                // copy the file from the archive using a small buffer to avoid heaping
-                Files.createFile(destination);
-                try (FileOutputStream fos = new FileOutputStream(destination.toFile())) {
-                    tar.transferTo(fos);
-                }
-            }
-            if (entry.isSymbolicLink() == false) {
-                // check if the underlying file system supports POSIX permissions
-                chmod(destination, entry.getMode());
-            }
-            entry = tar.getNextTarEntry();
-        }
+          final Path destinationPath = targetDir.toPath();
+          TarArchiveEntry entry = tar.getNextTarEntry();
+          while (entry != null) {
+              final Path relativePath = pathModifier.apply(entry.getName());
+              if (relativePath == null || relativePath.getFileName().equals(CURRENT_DIR_PATH)) {
+                  entry = tar.getNextTarEntry();
+                  continue;
+              }
+
+              final Path destination = destinationPath.resolve(relativePath);
+              final Path parent = destination.getParent();
+              if (Files.exists(parent) == false) {
+                  Files.createDirectories(parent);
+              }
+              if (entry.isDirectory()) {
+                  Files.createDirectory(destination);
+              } else if (entry.isSymbolicLink()) {
+                  Files.createSymbolicLink(destination, Paths.get(entry.getLinkName()));
+              } else {
+                  // copy the file from the archive using a small buffer to avoid heaping
+                  Files.createFile(destination);
+                  try (FileOutputStream fos = new FileOutputStream(destination.toFile())) {
+                      tar.transferTo(fos);
+                  }
+              }
+              if (entry.isSymbolicLink() == false) {
+                  // check if the underlying file system supports POSIX permissions
+                  chmod(destination, entry.getMode());
+              }
+              entry = tar.getNextTarEntry();
+          }
+       }
     }
 }

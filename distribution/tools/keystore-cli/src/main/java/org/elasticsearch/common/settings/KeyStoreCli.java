@@ -29,7 +29,8 @@ public class KeyStoreCli extends LoggingAwareMultiCommand {
     }
 
     public static void main(String[] args) throws Exception {
-        exit(new KeyStoreCli().main(args, Terminal.DEFAULT));
+        try (KeyStoreCli keystorecli = new KeyStoreCli()) {
+          exit(keystorecli.main(args, Terminal.DEFAULT));
+        }
     }
-
 }
