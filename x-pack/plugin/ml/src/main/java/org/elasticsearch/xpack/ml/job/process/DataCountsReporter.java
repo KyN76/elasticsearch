@@ -260,7 +260,7 @@ public class DataCountsReporter {
         int log10TotalRecords = (int) Math.floor(Math.log10(totalRecords));
         // Start reducing the logging rate after a million records have been seen
         if (log10TotalRecords > 5) {
-            logEvery = (int) Math.pow(10.0, log10TotalRecords - 5);
+            logEvery = (int) Math.pow(10.0, (double) log10TotalRecords - 5);
             logCount = 0;
         }
         return true;

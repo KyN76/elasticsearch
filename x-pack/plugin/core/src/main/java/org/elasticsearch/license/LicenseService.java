@@ -72,7 +72,7 @@ public class LicenseService extends AbstractLifecycleComponent implements Cluste
         License.LicenseType::parse, LicenseService::validateUploadTypesSetting, Setting.Property.NodeScope);
 
     // pkg private for tests
-    static final TimeValue NON_BASIC_SELF_GENERATED_LICENSE_DURATION = TimeValue.timeValueHours(30 * 24);
+    static final TimeValue NON_BASIC_SELF_GENERATED_LICENSE_DURATION = TimeValue.timeValueHours((long) 30 * 24);
 
     static final Set<License.LicenseType> VALID_TRIAL_TYPES = Set.of(
         License.LicenseType.GOLD, License.LicenseType.PLATINUM, License.LicenseType.ENTERPRISE, License.LicenseType.TRIAL);
@@ -312,7 +312,7 @@ public class LicenseService extends AbstractLifecycleComponent implements Cluste
 
 
     private static TimeValue days(int days) {
-        return TimeValue.timeValueHours(days * 24);
+        return TimeValue.timeValueHours((long) days * 24);
     }
 
     @Override

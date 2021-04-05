@@ -69,7 +69,7 @@ public final class DecryptionPacketsInputStream extends ChainingInputStream {
      * @see EncryptionPacketsInputStream#getEncryptionLength(long, int)
      */
     public static long getDecryptionLength(long ciphertextLength, int packetLength) {
-        long encryptedPacketLength = packetLength + GCM_TAG_LENGTH_IN_BYTES + GCM_IV_LENGTH_IN_BYTES;
+        long encryptedPacketLength = packetLength + (long) GCM_TAG_LENGTH_IN_BYTES + GCM_IV_LENGTH_IN_BYTES;
         long completePackets = ciphertextLength / encryptedPacketLength;
         long decryptedSize = completePackets * packetLength;
         if (ciphertextLength % encryptedPacketLength != 0) {

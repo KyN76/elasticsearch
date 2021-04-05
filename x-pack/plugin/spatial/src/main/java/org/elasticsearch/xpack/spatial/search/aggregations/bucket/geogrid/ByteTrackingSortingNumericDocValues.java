@@ -21,6 +21,6 @@ abstract class ByteTrackingSortingNumericDocValues extends AbstractSortingNumeri
     }
 
     long getValuesBytes() {
-        return values.length * Long.BYTES;
+        return (long) values.length * Long.BYTES;
     }
 }

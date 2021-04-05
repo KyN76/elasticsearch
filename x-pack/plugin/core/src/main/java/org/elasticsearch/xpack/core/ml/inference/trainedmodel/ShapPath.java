@@ -64,7 +64,7 @@ public class ShapPath  {
         double fractionOne = fractionOnes(pathIndex);
         double fractionZero = fractionZeros(pathIndex);
         if (fractionOne != 0) {
-            double pD = pathDepth + 1;
+            double pD = (double) pathDepth + 1;
             double stepUp = fractionZero / pD;
             double stepDown = fractionOne / pD;
             double countUp = stepUp;

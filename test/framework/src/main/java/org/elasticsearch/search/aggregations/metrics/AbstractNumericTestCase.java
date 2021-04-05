@@ -37,7 +37,7 @@ public abstract class AbstractNumericTestCase extends ESIntegTestCase {
         minValue = 1;
         minValues = 2;
         maxValue = numDocs;
-        maxValues = numDocs + 2;
+        maxValues = (long) numDocs + 2;
         indexRandom(true, builders);
 
         // creating an index to test the empty buckets functionality. The way it works is by indexing

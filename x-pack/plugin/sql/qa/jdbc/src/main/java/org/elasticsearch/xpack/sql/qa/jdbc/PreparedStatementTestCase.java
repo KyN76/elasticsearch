@@ -223,7 +223,7 @@ public abstract class PreparedStatementTestCase extends JdbcIntegrationTestCase 
                 try (ResultSet results = statement.executeQuery()) {
                     for (int i = 1; i <= 3; i++) {
                         assertTrue(results.next());
-                        assertEquals(1000 + i, results.getInt(1));
+                        assertEquals((long) 1000 + i, results.getInt(1));
                         assertEquals(new Timestamp(adjustTimestampForEachDocument(randomMillis, i)), results.getTimestamp(2));
                     }
                     assertFalse(results.next());
@@ -282,7 +282,7 @@ public abstract class PreparedStatementTestCase extends JdbcIntegrationTestCase 
                 statement.setString(1, randomDocumentText);
                 try (ResultSet results = statement.executeQuery()) {
                     assertTrue(results.next());
-                    assertEquals(1000 + randomDocumentIndex, results.getInt(1));
+                    assertEquals((long) 1000 + randomDocumentIndex, results.getInt(1));
                     assertEquals(randomDocumentText, results.getString(2));
                     assertFalse(results.next());
                 }
@@ -310,7 +310,7 @@ public abstract class PreparedStatementTestCase extends JdbcIntegrationTestCase 
                 try (ResultSet results = statement.executeQuery()) {
                     for (int i = 1; i <= 3; i++) {
                         assertTrue(results.next());
-                        assertEquals(1000 + i, results.getInt(1));
+                        assertEquals((long) 1000 + i, results.getInt(1));
                         assertEquals(text, results.getString(2));
                     }
                     assertFalse(results.next());

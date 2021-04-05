@@ -33,7 +33,7 @@ import static org.elasticsearch.xpack.core.security.SecurityField.setting;
 public final class FieldPermissionsCache {
 
     public static final Setting<Long> CACHE_SIZE_SETTING = Setting.longSetting(
-            setting("authz.store.roles.field_permissions.cache.max_size_in_bytes"), 100 * 1024 * 1024, -1L, Property.NodeScope);
+            setting("authz.store.roles.field_permissions.cache.max_size_in_bytes"), 100 * (long) 1024 * 1024, -1L, Property.NodeScope);
     private final Cache<FieldPermissionsDefinition, FieldPermissions> cache;
 
     public FieldPermissionsCache(Settings settings) {

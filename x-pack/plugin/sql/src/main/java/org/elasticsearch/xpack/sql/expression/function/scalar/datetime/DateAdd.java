@@ -31,7 +31,7 @@ public class DateAdd extends ThreeArgsDateTimeFunction {
 
     public enum Part implements DateTimeField {
         YEAR((dt, i) -> dt.plus(i, ChronoUnit.YEARS), "years", "yyyy", "yy"),
-        QUARTER((dt, i) -> dt.plus(i * 3, ChronoUnit.MONTHS), "quarters", "qq", "q"),
+        QUARTER((dt, i) -> dt.plus((long) i * 3, ChronoUnit.MONTHS), "quarters", "qq", "q"),
         MONTH((dt, i) -> dt.plus(i, ChronoUnit.MONTHS), "months", "mm", "m"),
         DAYOFYEAR((dt, i) -> dt.plus(i, ChronoUnit.DAYS), "dy", "y"),
         DAY((dt, i) -> dt.plus(i, ChronoUnit.DAYS), "days", "dd", "d"),

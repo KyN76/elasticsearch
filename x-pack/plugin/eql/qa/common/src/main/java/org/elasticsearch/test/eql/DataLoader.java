@@ -57,7 +57,7 @@ public class DataLoader {
     private static final Map<String, String[]> replacementPatterns = Collections.unmodifiableMap(getReplacementPatterns());
 
     private static final long FILETIME_EPOCH_DIFF = 11644473600000L;
-    private static final long FILETIME_ONE_MILLISECOND = 10 * 1000;
+    private static final long FILETIME_ONE_MILLISECOND = (long) 10 * 1000;
 
     // runs as java main
     private static boolean main = false;

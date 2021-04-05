@@ -947,7 +947,7 @@ public abstract class ESIntegTestCase extends ESTestCase {
      */
     public void waitForDocs(final long numDocs, final BackgroundIndexer indexer) throws Exception {
         // indexing threads can wait for up to ~1m before retrying when they first try to index into a shard which is not STARTED.
-        final long maxWaitTimeMs = Math.max(90 * 1000, 200 * numDocs);
+        final long maxWaitTimeMs = Math.max((long) 90 * 1000, 200 * numDocs);
 
         assertBusy(
             () -> {
