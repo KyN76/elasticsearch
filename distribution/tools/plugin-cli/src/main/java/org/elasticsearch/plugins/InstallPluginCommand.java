@@ -525,13 +525,16 @@ class InstallPluginCommand extends EnvironmentAwareCommand {
              * file contains a single line.
              */
             if (digestAlgo.equals("SHA-1")) {
-                final BufferedReader checksumReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                InputStreamReader inputStreamReader = new InputStreamReader(in, StandardCharsets.UTF_8);
+                final BufferedReader checksumReader = new BufferedReader(inputStreamReader);
                 expectedChecksum = checksumReader.readLine();
-                if (checksumReader.readLine() != null) {
+                String readline = checksumReader.readLine();
+                if (readline != null) {
                     throw new UserException(ExitCodes.IO_ERROR, "Invalid checksum file at " + checksumUrl);
                 }
             } else {
-                final BufferedReader checksumReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                InputStreamReader inputStreamReader = new InputStreamReader(in, StandardCharsets.UTF_8);
+                final BufferedReader checksumReader = new BufferedReader(inputStreamReader);
                 final String checksumLine = checksumReader.readLine();
                 final String[] fields = checksumLine.split(" {2}");
                 if (officialPlugin && fields.length != 2 || officialPlugin == false && fields.length > 2) {
@@ -553,11 +556,14 @@ class InstallPluginCommand extends EnvironmentAwareCommand {
                         throw new UserException(ExitCodes.IO_ERROR, message);
                     }
                 }
-                if (checksumReader.readLine() != null) {
+                String readline = checksumReader.readLine();
+                if (readline != null) {
                     throw new UserException(ExitCodes.IO_ERROR, "Invalid checksum file at " + checksumUrl);
                 }
             }
-        }
+        } finally {
+            checksumReader.close();
+            inputStreamReader.close();
 
         // read the bytes of the plugin zip in chunks to avoid out of memory errors
         try (InputStream zis = Files.newInputStream(zip)) {

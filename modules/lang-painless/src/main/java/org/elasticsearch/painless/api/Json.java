@@ -21,24 +21,28 @@ public class Json {
      * Load a string as the Java version of a JSON type, either List (JSON array), Map (JSON object), Number, Boolean or String
      */
     public static Object load(String json) throws IOException{
-        XContentParser parser = JsonXContent.jsonXContent.createParser(
-            NamedXContentRegistry.EMPTY,
-            DeprecationHandler.THROW_UNSUPPORTED_OPERATION,
-            json);
+        try {
+            XContentParser parser = JsonXContent.jsonXContent.createParser(
+                NamedXContentRegistry.EMPTY,
+                DeprecationHandler.THROW_UNSUPPORTED_OPERATION,
+                json);
 
-        switch (parser.nextToken()) {
-            case START_ARRAY:
-                return parser.list();
-            case START_OBJECT:
-                return parser.map();
-            case VALUE_NUMBER:
-                return parser.numberValue();
-            case VALUE_BOOLEAN:
-                return parser.booleanValue();
-            case VALUE_STRING:
-                return parser.text();
-            default:
-                return null;
+            switch (parser.nextToken()) {
+                case START_ARRAY:
+                    return parser.list();
+                case START_OBJECT:
+                    return parser.map();
+                case VALUE_NUMBER:
+                    return parser.numberValue();
+                case VALUE_BOOLEAN:
+                    return parser.booleanValue();
+                case VALUE_STRING:
+                    return parser.text();
+                default:
+                    return null;
+            }
+        } finally {
+            parser.close();
         }
     }
 
