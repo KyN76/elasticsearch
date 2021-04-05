@@ -47,8 +47,8 @@ public class Geohash {
     static {
         precisionToLatHeight = new double[PRECISION + 1];
         precisionToLonWidth = new double[PRECISION + 1];
-        precisionToLatHeight[0] = 90*2;
-        precisionToLonWidth[0] = 180*2;
+        precisionToLatHeight[0] = (double) 90*2;
+        precisionToLonWidth[0] = (double) 180*2;
         boolean even = false;
         for(int i = 1; i <= PRECISION; i++) {
             precisionToLatHeight[i] = precisionToLatHeight[i-1] / (even ? 8 : 4);

@@ -50,7 +50,7 @@ public abstract class TestClustersRegistry implements BuildService<BuildServiceP
                         TESTCLUSTERS_INSPECT_FAILURE
                     );
                     try {
-                        Thread.sleep(1000 * i);
+                        Thread.sleep(1000 * (long) i);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         return;

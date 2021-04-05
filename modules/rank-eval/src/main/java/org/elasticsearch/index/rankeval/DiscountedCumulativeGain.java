@@ -156,7 +156,7 @@ public class DiscountedCumulativeGain implements EvaluationMetric {
         double dcg = 0;
         for (Integer rating : ratings) {
             if (rating != null) {
-                dcg += (Math.pow(2, rating) - 1) / ((Math.log(rank + 1) / LOG2));
+                dcg += (Math.pow(2, rating) - 1) / ((Math.log((double) rank + 1) / LOG2));
             }
             rank++;
         }

@@ -1385,7 +1385,7 @@ public class ElasticsearchNode implements TestClusterConfiguration {
         // Installing plugins at config time and loading them when nods start requires additional time we need to
         // account for
             ADDITIONAL_CONFIG_TIMEOUT_UNIT.toMillis(
-                ADDITIONAL_CONFIG_TIMEOUT * (plugins.size() + keystoreFiles.size() + keystoreSettings.size() + credentials.size())
+                (long) ADDITIONAL_CONFIG_TIMEOUT * (plugins.size() + keystoreFiles.size() + keystoreSettings.size() + credentials.size())
             ), TimeUnit.MILLISECONDS, this);
     }
 

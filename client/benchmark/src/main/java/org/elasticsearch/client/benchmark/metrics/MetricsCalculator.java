@@ -55,7 +55,7 @@ public final class MetricsCalculator {
                 samples.stream().filter((r) -> r.isSuccess()).count(),
                 samples.stream().filter((r) -> r.isSuccess() == false).count(),
                 // throughput calculation is based on the total (Wall clock) time it took to generate all samples
-                calculateThroughput(samples.size(), latestEnd - firstStart),
+                calculateThroughput(samples.size(), (double) latestEnd - firstStart),
                 // convert ns -> ms without losing precision
                 StatUtils.percentile(serviceTimes, 50.0d) / TimeUnit.MILLISECONDS.toNanos(1L),
                 StatUtils.percentile(serviceTimes, 90.0d) / TimeUnit.MILLISECONDS.toNanos(1L),
