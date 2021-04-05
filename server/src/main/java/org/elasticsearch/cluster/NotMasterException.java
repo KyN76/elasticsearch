@@ -29,7 +29,7 @@ public class NotMasterException extends ElasticsearchException {
     }
 
     @Override
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         return this;
     }
 }

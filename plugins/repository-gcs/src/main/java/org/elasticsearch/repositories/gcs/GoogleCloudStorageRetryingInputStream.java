@@ -246,7 +246,7 @@ class GoogleCloudStorageRetryingInputStream extends InputStream {
     }
 
     @Override
-    public void reset() {
+    public void synchronized reset() {
         throw new UnsupportedOperationException("GoogleCloudStorageRetryingInputStream does not support seeking");
     }
 
