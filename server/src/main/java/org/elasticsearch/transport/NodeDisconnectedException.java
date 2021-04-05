@@ -26,7 +26,7 @@ public class NodeDisconnectedException extends ConnectTransportException {
     // stack trace is meaningless...
 
     @Override
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         return this;
     }
 }

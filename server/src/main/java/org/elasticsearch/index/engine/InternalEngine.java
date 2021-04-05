@@ -2566,7 +2566,7 @@ public class InternalEngine extends Engine {
         }
 
         @Override
-        public long tryDeleteDocument(IndexReader readerIn, int docID) {
+        public synchronized long tryDeleteDocument(IndexReader readerIn, int docID) {
             throw new AssertionError("tryDeleteDocument is not supported. See Lucene#DirectoryReaderWithAllLiveDocs");
         }
     }

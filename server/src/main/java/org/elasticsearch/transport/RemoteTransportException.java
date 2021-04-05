@@ -35,7 +35,7 @@ public class RemoteTransportException extends ActionTransportException implement
     }
 
     @Override
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         // no need for stack trace here, we always have cause
         return this;
     }

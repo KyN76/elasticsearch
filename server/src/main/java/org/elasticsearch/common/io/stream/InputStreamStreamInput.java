@@ -60,7 +60,7 @@ public class InputStreamStreamInput extends StreamInput {
     }
 
     @Override
-    public void reset() throws IOException {
+    public synchronized void reset() throws IOException {
         is.reset();
     }
 
@@ -70,7 +70,7 @@ public class InputStreamStreamInput extends StreamInput {
     }
 
     @Override
-    public void mark(int readlimit) {
+    public synchronized void mark(int readlimit) {
         is.mark(readlimit);
     }
 
