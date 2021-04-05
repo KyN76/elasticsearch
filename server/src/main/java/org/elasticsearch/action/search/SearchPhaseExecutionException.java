@@ -88,7 +88,7 @@ public class SearchPhaseExecutionException extends ElasticsearchException {
     }
 
     @Override
-    public Throwable getCause() {
+    public synchronized Throwable getCause() {
         Throwable cause = super.getCause();
         if (cause == null) {
             // fall back to guessed root cause
