@@ -145,6 +145,6 @@ public final class LongLongHash extends AbstractHash {
     }
 
     static long hash(long key1, long key2) {
-        return 31 * BitMixer.mix(key1) +  BitMixer.mix(key2);
+        return 31 * BitMixer.mix(key1) + (long)  BitMixer.mix(key2);
     }
 }
